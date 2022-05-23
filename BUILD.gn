@@ -32,7 +32,7 @@ if (!build_with_chromium) {
     if (rtc_build_tools) {
       deps += [ "rtc_tools" ]
     }
-    
+
     if (rtc_include_tests) {
       deps += [
         ":rtc_unittests",
@@ -60,7 +60,7 @@ if (!build_with_chromium) {
         "stats:rtc_stats_unittests",
         "system_wrappers:system_wrappers_unittests",
         "test",
-        "mmp:common_mmp_unittests",
+        #"mmp:common_mmp_unittests",
         "video:screenshare_loopback",
         "video:sv_loopback",
         "video:video_loopback",
@@ -71,9 +71,9 @@ if (!build_with_chromium) {
         # see bugs.webrtc.org/11027#c5.
         deps += [ ":webrtc_lib_link_test" ]
       }
-       
+
       deps += [ "modules/video_capture:video_capture_tests" ]
-      
+
       if (rtc_enable_protobuf) {
         deps += [
           "audio:low_bandwidth_audio_test",
@@ -440,7 +440,7 @@ if (!build_with_chromium) {
       "pc:rtc_pc_base",
       "rtc_base",
       "sdk",
-      "mmp",
+      #"mmp",
       "video",
     ]
 
@@ -477,8 +477,8 @@ if (!build_with_chromium) {
       deps += [ "logging:rtc_event_log_proto" ]
     }
   }
-   
-   
+
+
   if (rtc_include_tests && !is_asan) {
     rtc_executable("webrtc_lib_link_test") {
       testonly = true
@@ -494,17 +494,17 @@ if (!build_with_chromium) {
   "//mmp/src/SDK/RockChip_SDK",
   "//mmp/src/SDK/RockChip_SDK/include/rkmedia",
   "//mmp/src/include/dpi_interface",
-  "//mmp/src/SDK/RockChip_SDK/include/easymedia"  
+  "//mmp/src/SDK/RockChip_SDK/include/easymedia"
   ]
-  
-  include_dirs += [ 
+
+  include_dirs += [
     "//mmp/src/module/hal/encoder",
     "//mmp/src/include/mediafw",
     "//mmp/src/SDK/RockChip_SDK",
     "//mmp/src/module/hal/consumer",
     "//mmp/src/module/hal/general_camera/camera",
     "//mmp/src/SDK/RockChip_SDK/include/rkmedia"]
-   
+
 #
     }
   }

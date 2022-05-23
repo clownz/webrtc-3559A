@@ -23,10 +23,10 @@
 #include "media/engine/webrtc_media_engine.h"
 #include "modules/audio_device/include/audio_device.h"
 #include "modules/audio_processing/include/audio_processing.h"
-#include "rk_venc.h"
-#include "rk_vo.h"
-#include "rk_camera.h"
-#include "common/common_const.h"
+// #include "rk_venc.h"
+// #include "rk_vo.h"
+// #include "rk_camera.h"
+// #include "common/common_const.h"
 namespace webrtc {
 
 cricket::MediaEngineDependencies CreateSomeMediaDeps(
@@ -94,10 +94,10 @@ void TestCase2RegularFactory() {
 int main(int argc, char** argv) {
   webrtc::TestCase1ModularFactory();
   webrtc::TestCase2RegularFactory();
-   IVideoEncoder*        venc = new rk_venc();
-   IVideoConsumer*        mVo = (IVideoConsumer*)(new rk_vo());
-   mVo->Open();
-   venc->Open(0, media_fw::ETYPE_VIDEO_CODEC_H264, 1920, 1080, 1080, 25, 0 /*unused*/, 2, 30);
-   printf("webrtc debug =%d\n");
+  //  IVideoEncoder*        venc = new rk_venc();
+  //  IVideoConsumer*        mVo = (IVideoConsumer*)(new rk_vo());
+  //  mVo->Open();
+  //  venc->Open(0, media_fw::ETYPE_VIDEO_CODEC_H264, 1920, 1080, 1080, 25, 0 /*unused*/, 2, 30);
+  //  printf("webrtc debug =%d\n");
   return 0;
 }
