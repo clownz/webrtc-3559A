@@ -1,0 +1,17 @@
+6cb005be9f83de2e68bc6f42e6a74aaf  usr/include/sys/capability.h
+2432130755a0803e15c9997ffdcf4bfa  usr/include/sys/psx_syscall.h
+1ce9e65f8397b9a89c550f54a7e319a8  usr/lib/x86_64-linux-gnu/libcap.a
+ac61e013f00e7c6cbf67e73661e221fe  usr/lib/x86_64-linux-gnu/libpsx.a
+9ec435b46d801d517d6c640994335765  usr/lib/x86_64-linux-gnu/pkgconfig/libcap.pc
+0b429c4ecfcaac247dbb3603e1c7d6ff  usr/lib/x86_64-linux-gnu/pkgconfig/libpsx.pc
+d075cc3deb7b345e6b0649077bd8f83a  usr/share/doc/libcap-dev/changelog.Debian.gz
+7a60e96cffd7432d5fb38b3d4e6f690c  usr/share/doc/libcap-dev/changelog.gz
+a6cc470bc77b47de05bc656d4b68cdee  usr/share/doc/libcap-dev/copyright
+616be61eb915589f71aaccde79dd5b25  usr/share/man/man3/cap_clear.3.gz
+c3a23f9dfff7cb56f14247a68affd28d  usr/share/man/man3/cap_copy_ext.3.gz
+4887381929057c7de48023359f35bf9b  usr/share/man/man3/cap_from_text.3.gz
+4d8584e5c4be74a0212f152edc1663c4  usr/share/man/man3/cap_get_file.3.gz
+6d389e7ac717b0db7d38c7843dcc3f53  usr/share/man/man3/cap_get_proc.3.gz
+7cec0a7b4b7b7a1dd32bbd271e125f86  usr/share/man/man3/cap_init.3.gz
+9af6089c1def0c862049bcf86da05b30  usr/share/man/man3/libcap.3.gz
+072a29acbe2a3ab23a84a43b4fc3e104  usr/share/man/man3/libpsx.3.gz

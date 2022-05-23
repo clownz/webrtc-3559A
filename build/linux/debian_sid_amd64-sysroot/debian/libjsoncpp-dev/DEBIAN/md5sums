@@ -1,0 +1,16 @@
+e1f0d91dd67033564f04a1cc3afcd1d8  usr/include/jsoncpp/json/allocator.h
+d542dfb73cafbe41637eede9bd393556  usr/include/jsoncpp/json/assertions.h
+43f71f88dd8558f62a589b6473c18229  usr/include/jsoncpp/json/config.h
+68cafd5ef203a84ca68015baeca367df  usr/include/jsoncpp/json/forwards.h
+4f5d70ded9fdb62205531c4969876073  usr/include/jsoncpp/json/json.h
+5824fc27b4c3d90b7ca03eb65d533e3c  usr/include/jsoncpp/json/json_features.h
+e79b198b00e08e2af5d27fec3bec97ac  usr/include/jsoncpp/json/reader.h
+047d6950d45231d4d56a2fbf71ca6995  usr/include/jsoncpp/json/value.h
+600f8511d4898123ed76a2fff687ca99  usr/include/jsoncpp/json/version.h
+7bea39e76f4ffd15a80f4e72017b97c3  usr/include/jsoncpp/json/writer.h
+b0d891981a5ede8166c8f42e089c9b78  usr/lib/x86_64-linux-gnu/cmake/jsoncpp/jsoncppConfig-none.cmake
+8b6ac500c56576fa372faaa3b10a2ffd  usr/lib/x86_64-linux-gnu/cmake/jsoncpp/jsoncppConfig.cmake
+f7e82f3fedd0551f3b73609776b57f60  usr/lib/x86_64-linux-gnu/cmake/jsoncpp/jsoncppConfigVersion.cmake
+9988a6f05ea411acf4a66f8006be7d2b  usr/lib/x86_64-linux-gnu/pkgconfig/jsoncpp.pc
+0d035d6f0bfa4c1f6cf7e612e967f689  usr/share/doc/libjsoncpp-dev/changelog.Debian.gz
+386f287a8a24f187b4756b74ecfd2750  usr/share/doc/libjsoncpp-dev/copyright

@@ -1,0 +1,6 @@
+75775baa67b207a65969b255372e05de  usr/include/xcb/dri3.h
+1a81164eb234cac20b3e66863a872f54  usr/lib/x86_64-linux-gnu/libxcb-dri3.a
+ebe742938e7da3267d275fe931f00595  usr/lib/x86_64-linux-gnu/pkgconfig/xcb-dri3.pc
+616ebb50ba1af1f814356eedbb014bf2  usr/share/doc/libxcb-dri3-dev/changelog.Debian.gz
+ccd3cc60f4b6e39850fa9bc0fe462721  usr/share/doc/libxcb-dri3-dev/changelog.gz
+618ee90893b45d0d0c19d41a3a3d2e7d  usr/share/doc/libxcb-dri3-dev/copyright

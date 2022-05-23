@@ -1,0 +1,26 @@
+Package: libdatrie-dev
+Source: libdatrie
+Version: 0.2.13-1
+Architecture: amd64
+Maintainer: Theppitak Karoonboonyanan <thep@debian.org>
+Installed-Size: 85
+Depends: libdatrie1 (= 0.2.13-1), pkg-config
+Suggests: libdatrie-doc (= 0.2.13-1)
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://linux.thai.net/projects/libthai
+Description: Development files for double-array trie library
+ Trie is a kind of digital search tree, an efficient indexing method in which
+ search time is independent of database size. It only takes O(m) search time,
+ where m is the length of the search string. Comparably as efficient as
+ hashing, trie also provides flexibility on incremental matching and key
+ spelling manipulation. This makes it ideal for lexical analyzers, as well as
+ spelling dictionaries.
+ .
+ This library is an implementation of double-array structure for representing
+ trie, as proposed by Junichi Aoe. The details of the implementation can be
+ found at https://linux.thai.net/~thep/datrie/datrie.html
+ .
+ This package contains the development libraries, header files and manpages
+ you need to develop your programs using the datrie library.

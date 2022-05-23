@@ -1,0 +1,6 @@
+676e94de9d0715c0b0aff6ae4f1100f3  usr/lib/arm-linux-gnueabihf/libnspr4.so
+0df65ce98185f23f5e7df71178c5f04c  usr/lib/arm-linux-gnueabihf/libplc4.so
+4cfadb9c5ab9ccee61e94764c0caf927  usr/lib/arm-linux-gnueabihf/libplds4.so
+640fa12d5dccaa589d8bc5dabe010f02  usr/share/doc/libnspr4/changelog.Debian.gz
+9951d8181eb9aa4bfe41088480d3acbb  usr/share/doc/libnspr4/copyright
+5d41a5a2c751c02074e360be9f32ba1a  usr/share/lintian/overrides/libnspr4

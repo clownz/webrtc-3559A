@@ -1,0 +1,14 @@
+Package: libtsan0
+Source: gcc-10
+Version: 10.2.1-6
+Architecture: amd64
+Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
+Installed-Size: 8926
+Depends: gcc-10-base (= 10.2.1-6), libc6 (>= 2.23), libgcc-s1 (>= 3.3)
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: http://gcc.gnu.org/
+Description: ThreadSanitizer -- a Valgrind-based detector of data races (runtime)
+ ThreadSanitizer (Tsan) is a data race detector for C/C++ programs.
+ The Linux and Mac versions are based on Valgrind.

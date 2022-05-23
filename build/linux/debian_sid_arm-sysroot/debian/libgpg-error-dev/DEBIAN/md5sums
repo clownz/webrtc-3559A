@@ -1,0 +1,17 @@
+6c4d954a1cc110162e3493da556fcdea  usr/bin/gpg-error-config
+abb35feab96f75002c9dba0f789f9678  usr/bin/gpgrt-config
+1fd053b1e2c11e1ab337e3f7e876e2b2  usr/include/arm-linux-gnueabihf/gpg-error.h
+1fd053b1e2c11e1ab337e3f7e876e2b2  usr/include/arm-linux-gnueabihf/gpgrt.h
+866c9d863e672b9752610337a45ddb2b  usr/lib/arm-linux-gnueabihf/libgpg-error.a
+5099b6c8d70d8d5a6fea1e9f994baf8b  usr/lib/arm-linux-gnueabihf/pkgconfig/gpg-error.pc
+85fdbdb97d7f980d2ee079e02d3e2106  usr/share/aclocal/gpg-error.m4
+8700bf1d40d372ff16523a46a7aae47e  usr/share/aclocal/gpgrt.m4
+e5067d861e099a9d3c756f4855b066c9  usr/share/doc/libgpg-error-dev/README.gz
+7efa3d4960ce45f70ff38e3204413009  usr/share/doc/libgpg-error-dev/TODO.Debian
+099fc59115b4de99912d65da0d97bdb9  usr/share/doc/libgpg-error-dev/changelog.Debian.gz
+ac1e9c43cab44c0d94ee31b0ae3bb1d0  usr/share/doc/libgpg-error-dev/changelog.gz
+60d5c5832d5b9ee26311b156540db1fb  usr/share/doc/libgpg-error-dev/copyright
+1ae28057fd4460b2038a074687861f85  usr/share/doc/libgpg-error-dev/errorref.txt.gz
+f7435c0e6795a02b99a98809420d4cab  usr/share/info/gpgrt.info.gz
+fe120ff3b08cd7e6765a73da2a8a71c3  usr/share/lintian/overrides/libgpg-error-dev
+23ee43c8440737c0dd701b41248d9a7e  usr/share/man/man1/gpgrt-config.1.gz

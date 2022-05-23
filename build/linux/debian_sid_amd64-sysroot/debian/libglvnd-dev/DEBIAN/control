@@ -1,0 +1,18 @@
+Package: libglvnd-dev
+Source: libglvnd
+Version: 1.3.2-1
+Architecture: amd64
+Maintainer: Debian X Strike Force <debian-x@lists.debian.org>
+Installed-Size: 65
+Depends: libglvnd0 (= 1.3.2-1), libegl-dev (>= 1.3.0-1), libgl-dev (>= 1.3.0-1), libgles-dev (>= 1.3.0-1), libglx-dev (>= 1.3.0-1), libopengl-dev (>= 1.3.0-1)
+Breaks: libglvnd-core-dev (<< 1.3.0-1)
+Replaces: libglvnd-core-dev (<< 1.3.0-1)
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://gitlab.freedesktop.org/glvnd/libglvnd
+Description: Vendor neutral GL dispatch library -- development files
+ This is an implementation of the vendor-neutral dispatch layer for
+ arbitrating OpenGL API calls between multiple vendors on a per-screen basis.
+ .
+ This package contains the development files for libglvnd.

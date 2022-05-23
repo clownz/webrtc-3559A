@@ -1,0 +1,16 @@
+Package: libglx0
+Source: libglvnd
+Version: 1.3.2-1
+Architecture: amd64
+Maintainer: Debian X Strike Force <debian-x@lists.debian.org>
+Installed-Size: 163
+Depends: libc6 (>= 2.14), libglvnd0 (= 1.3.2-1), libx11-6 (>= 2:1.4.99.1), libglx-mesa0
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://gitlab.freedesktop.org/glvnd/libglvnd
+Description: Vendor neutral GL dispatch library -- GLX support
+ This is an implementation of the vendor-neutral dispatch layer for
+ arbitrating OpenGL API calls between multiple vendors on a per-screen basis.
+ .
+ This package contains support for GLX.

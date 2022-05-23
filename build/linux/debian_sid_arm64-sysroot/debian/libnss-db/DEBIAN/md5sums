@@ -1,0 +1,14 @@
+50d19e03e47aaa5c578f9c5ad67b9b0f  lib/aarch64-linux-gnu/libnss_db-2.2.3.so
+445f59647d09c6807ade81d4184845a6  usr/bin/makedb
+a6c1720422fa9dd71d4ae55897317e60  usr/share/doc/libnss-db/NEWS.gz
+5df4581345c1f57663dfbcd64e7a45b0  usr/share/doc/libnss-db/README
+750f125b8f7150f36dd40ac716c34173  usr/share/doc/libnss-db/changelog.Debian.arm64.gz
+0cdae73d34efa899df315ff54df3abb9  usr/share/doc/libnss-db/changelog.Debian.gz
+3f94cd94848e39baf8591ac60f64789b  usr/share/doc/libnss-db/changelog.gz
+27dea76b51b7bde71a067dbebf37c736  usr/share/doc/libnss-db/copyright
+fd0887742f660c5affa56e3efafc1b45  usr/share/locale/de/LC_MESSAGES/nss_db.mo
+c7e22aedece007497710c32674154a9e  usr/share/locale/nl/LC_MESSAGES/nss_db.mo
+62db1f2d290ed16a2202c57c2e74479b  usr/share/locale/pl/LC_MESSAGES/nss_db.mo
+2218325afccd0f53f3c555f8782bd814  usr/share/locale/sv/LC_MESSAGES/nss_db.mo
+3ea7d2872e51257582011022d47bb127  usr/share/man/man1/makedb.1.gz
+305c810f2a652d0ffa1520662c2e15a8  var/lib/misc/Makefile

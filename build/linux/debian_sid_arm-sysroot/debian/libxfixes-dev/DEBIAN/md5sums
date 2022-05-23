@@ -1,0 +1,7 @@
+8697bdf4b97df7ce93775bedc986ecb9  usr/include/X11/extensions/Xfixes.h
+b83b782c7b13eb28adefb519dd70b825  usr/lib/arm-linux-gnueabihf/libXfixes.a
+d578f12b5db3c919e64796b5392d157d  usr/lib/arm-linux-gnueabihf/pkgconfig/xfixes.pc
+ea79a106ae37d36c79d407c1fe72321d  usr/share/doc/libxfixes-dev/changelog.Debian.gz
+59e9627c1ce048cd14b147990cd3bfb4  usr/share/doc/libxfixes-dev/changelog.gz
+4971272ebcf7ee7796b87562d878b300  usr/share/doc/libxfixes-dev/copyright
+510c1577a8e70e0240f3706e3436194b  usr/share/man/man3/Xfixes.3.gz

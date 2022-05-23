@@ -1,0 +1,10 @@
+747d2518a6daf062ca14c8b529c43f52  usr/include/xcb/bigreq.h
+662cd40c94196633005242c05adfa70f  usr/include/xcb/xc_misc.h
+44ca96a91db7fa7dc50af36480a414cf  usr/include/xcb/xcb.h
+6b189b499487a1a59109bc9b9ad51f34  usr/include/xcb/xcbext.h
+71d10752b78110438c22b1a5941fa9f8  usr/include/xcb/xproto.h
+22777a4ce273a90445246ec71773b7e1  usr/lib/x86_64-linux-gnu/libxcb.a
+dd81cab0e828a708587b1b52387b8eb0  usr/lib/x86_64-linux-gnu/pkgconfig/xcb.pc
+616ebb50ba1af1f814356eedbb014bf2  usr/share/doc/libxcb1-dev/changelog.Debian.gz
+ccd3cc60f4b6e39850fa9bc0fe462721  usr/share/doc/libxcb1-dev/changelog.gz
+618ee90893b45d0d0c19d41a3a3d2e7d  usr/share/doc/libxcb1-dev/copyright

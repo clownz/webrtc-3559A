@@ -1,0 +1,20 @@
+Package: libgdk-pixbuf-2.0-dev
+Source: gdk-pixbuf
+Version: 2.42.2+dfsg-1
+Architecture: amd64
+Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
+Installed-Size: 425
+Depends: gir1.2-gdkpixbuf-2.0 (= 2.42.2+dfsg-1), libgdk-pixbuf-2.0-0 (= 2.42.2+dfsg-1), libgdk-pixbuf2.0-bin (= 2.42.2+dfsg-1), libglib2.0-dev (>= 2.56.0), libpng-dev (<< 1.7), libpng-dev (>= 1.6), shared-mime-info
+Breaks: libgdk-pixbuf2.0-dev (<< 2.40.0+dfsg-6~)
+Replaces: libgdk-pixbuf2.0-dev (<< 2.40.0+dfsg-6~)
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://www.gtk.org/
+Description: GDK Pixbuf library (development files)
+ The GDK Pixbuf library provides:
+  - Image loading and saving facilities.
+  - Fast scaling and compositing of pixbufs.
+  - Simple animation loading (ie. animated GIFs)
+ .
+ This package contains the header files which are needed for using GDK Pixbuf.

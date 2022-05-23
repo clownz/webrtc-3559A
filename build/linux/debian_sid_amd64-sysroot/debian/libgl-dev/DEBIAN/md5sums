@@ -1,0 +1,8 @@
+4fc52ea6002b22ad952bb66df2bdf3e5  usr/include/GL/gl.h
+5ac80e36684f4aaffda4773545be548b  usr/include/GL/glcorearb.h
+db8a3b838cf3a5bd12ad4cef3b94829a  usr/include/GL/glext.h
+6f0bb30492bfea6fb013ad747dcea472  usr/include/KHR/khrplatform.h
+dfe2b11d9edb92285c94b28912c61602  usr/lib/x86_64-linux-gnu/pkgconfig/gl.pc
+2295a81abfbf493c2fefd51c81b8618e  usr/share/bug/libgl-dev/control
+d114f3807de0e55ff86c3272d3873d88  usr/share/doc/libgl-dev/changelog.Debian.gz
+6f91facaf87458af9488a7576492a515  usr/share/doc/libgl-dev/copyright

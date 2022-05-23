@@ -1,0 +1,9 @@
+prefix=/usr
+libdir=${prefix}/lib/arm-linux-gnueabihf
+includedir=${prefix}/include
+
+Name: Libinput
+Description: Input device library
+Version: 1.16.4
+Libs: -L${libdir} -linput
+Cflags: -I${includedir}

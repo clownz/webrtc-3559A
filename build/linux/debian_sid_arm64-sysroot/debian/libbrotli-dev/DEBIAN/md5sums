@@ -1,0 +1,13 @@
+3ab635985bdfb22a8165816c8adb436e  usr/include/brotli/decode.h
+67ebfdf08ace3f56671fdd2d32a4dfea  usr/include/brotli/encode.h
+40989c8f42ff3fa0efdeea3fe2060dfa  usr/include/brotli/port.h
+4d772e4c18afe1d9051a92b0ea1aefab  usr/include/brotli/types.h
+43ed4afe89c9393dd256242c9405f97f  usr/lib/aarch64-linux-gnu/libbrotlicommon.a
+07b044dc929535bfb9b2d078202c0f22  usr/lib/aarch64-linux-gnu/libbrotlidec.a
+d4b659b9f3b7c261124761681bb90ba4  usr/lib/aarch64-linux-gnu/libbrotlienc.a
+558435534887ddeb8fe0c49abaf5183c  usr/lib/aarch64-linux-gnu/pkgconfig/libbrotlicommon.pc
+55772bdaf5ea0ef419ac8df732fab3ec  usr/lib/aarch64-linux-gnu/pkgconfig/libbrotlidec.pc
+d2ee86d0fd98105353327b72d2b244b8  usr/lib/aarch64-linux-gnu/pkgconfig/libbrotlienc.pc
+aeea9ff0915cda34be3989ec7da14f7d  usr/share/doc/libbrotli-dev/changelog.Debian.arm64.gz
+003eca448c810cd7e9a5d3681a4c37aa  usr/share/doc/libbrotli-dev/changelog.Debian.gz
+88a64abee92ba0e2810574d815fa4900  usr/share/doc/libbrotli-dev/copyright

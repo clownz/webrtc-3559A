@@ -1,0 +1,203 @@
+# Copyright (c) 2016 The WebRTC project authors. All Rights Reserved.
+#
+# Use of this source code is governed by a BSD-style license
+# that can be found in the LICENSE file in the root of the source
+# tree. An additional intellectual property rights grant can be found
+# in the file PATENTS.  All contributing project authors may
+# be found in the AUTHORS file in the root of the source tree.
+
+import("../webrtc.gni")
+
+group("examples") {
+  # This target shall build all targets in examples.
+  testonly = true
+  deps = []
+
+  if (!build_with_chromium) {
+    deps += [ ":stun_prober" ]
+  }
+
+  if (is_linux || is_chromeos || is_win) {
+    deps += [
+      ":peerconnection_server",
+      ":stunserver",
+      ":turnserver",
+    ]
+    if (current_os != "winuwp") {
+      deps += [ ":peerconnection_client" ]
+    }
+  }
+}
+
+rtc_library("read_auth_file") {
+  testonly = true
+  sources = [
+    "turnserver/read_auth_file.cc",
+    "turnserver/read_auth_file.h",
+  ]
+  deps = [ "../rtc_base" ]
+}
+
+
+if (rtc_include_tests) {
+  rtc_test("examples_unittests") {
+    testonly = true
+    sources = [ "turnserver/read_auth_file_unittest.cc" ]
+    deps = [
+      ":read_auth_file",
+      "../test:test_main",
+      "//test:test_support",
+      "//testing/gtest",
+    ]
+  }
+}
+
+if (is_linux) {
+  rtc_executable("peerconnection_client") {
+    testonly = true
+    sources = [
+      "peerconnection/client/conductor.cc",
+      "peerconnection/client/conductor.h",
+      "peerconnection/client/defaults.cc",
+      "peerconnection/client/defaults.h",
+      "peerconnection/client/peer_connection_client.cc",
+      "peerconnection/client/peer_connection_client.h",
+    ]
+
+    deps = [
+      "../api:audio_options_api",
+      "../api:create_peerconnection_factory",
+      "../api:libjingle_peerconnection_api",
+      "../api:media_stream_interface",
+      "../api:scoped_refptr",
+      "../api/audio:audio_mixer_api",
+      "../api/audio_codecs:audio_codecs_api",
+      "../api/video:video_frame",
+      "../api/video:video_rtp_headers",
+      "../api/video_codecs:video_codecs_api",
+      "../media:rtc_media_base",
+      "../p2p:rtc_p2p",
+      "../pc:video_track_source",
+      "../rtc_base:checks",
+      "../rtc_base:net_helpers",
+      "../rtc_base:threading",
+      "../rtc_base/third_party/sigslot",
+      "../system_wrappers:field_trial",
+      "../test:field_trial",
+      "../test:platform_video_capturer",
+      "../test:rtp_test_utils",
+      "//third_party/abseil-cpp/absl/memory",
+      "//third_party/abseil-cpp/absl/types:optional",
+    ]
+
+    if (is_linux || is_chromeos) {
+      sources += [
+        "peerconnection/client/linux/main.cc",
+        "peerconnection/client/linux/main_wnd.cc",
+        "peerconnection/client/linux/main_wnd.h",
+      ]
+      cflags = [ "-Wno-deprecated-declarations" ]
+      libs = [
+        "X11",
+        "Xcomposite",
+        "Xext",
+        "Xrender",
+      ]
+      deps += [ "//build/config/linux/gtk" ]
+    }
+
+    deps += [
+      "../api:libjingle_peerconnection_api",
+      "../api/audio_codecs:builtin_audio_decoder_factory",
+      "../api/audio_codecs:builtin_audio_encoder_factory",
+      "../api/video:video_frame",
+      "../api/video:video_rtp_headers",
+      "../api/video_codecs:builtin_video_decoder_factory",
+      "../api/video_codecs:builtin_video_encoder_factory",
+      "../media:rtc_audio_video",
+      "../modules/audio_device",
+      "../modules/audio_processing",
+      "../modules/audio_processing:api",
+      "../modules/video_capture:video_capture_module",
+      "../pc:libjingle_peerconnection",
+      "../pc:peerconnection",
+      "../rtc_base",
+      "../rtc_base:rtc_base_approved",
+      "../rtc_base:rtc_json",
+      "../test:video_test_common",
+      "//third_party/abseil-cpp/absl/flags:flag",
+      "//third_party/abseil-cpp/absl/flags:parse",
+      "//third_party/libyuv",
+    ]
+  }
+
+  rtc_executable("peerconnection_server") {
+    testonly = true
+    sources = [
+      "peerconnection/server/data_socket.cc",
+      "peerconnection/server/data_socket.h",
+      "peerconnection/server/main.cc",
+      "peerconnection/server/peer_channel.cc",
+      "peerconnection/server/peer_channel.h",
+      "peerconnection/server/utils.cc",
+      "peerconnection/server/utils.h",
+    ]
+    deps = [
+      "../rtc_base:rtc_base_approved",
+      "../system_wrappers:field_trial",
+      "../test:field_trial",
+      "//third_party/abseil-cpp/absl/flags:flag",
+      "//third_party/abseil-cpp/absl/flags:parse",
+      "//third_party/abseil-cpp/absl/flags:usage",
+    ]
+  }
+  rtc_executable("turnserver") {
+    testonly = true
+    sources = [ "turnserver/turnserver_main.cc" ]
+    deps = [
+      ":read_auth_file",
+      "../p2p:p2p_server_utils",
+      "../p2p:rtc_p2p",
+      "../pc:rtc_pc",
+      "../rtc_base",
+      "../rtc_base:ip_address",
+      "../rtc_base:rtc_base_approved",
+      "../rtc_base:socket_address",
+      "../rtc_base:socket_server",
+      "../rtc_base:threading",
+    ]
+  }
+  rtc_executable("stunserver") {
+    testonly = true
+    sources = [ "stunserver/stunserver_main.cc" ]
+    deps = [
+      "../p2p:p2p_server_utils",
+      "../p2p:rtc_p2p",
+      "../pc:rtc_pc",
+      "../rtc_base",
+      "../rtc_base:rtc_base_approved",
+      "../rtc_base:socket_address",
+      "../rtc_base:socket_server",
+      "../rtc_base:threading",
+    ]
+  }
+}
+
+if (!build_with_chromium) {
+  # Doesn't build within Chrome on Win.
+  rtc_executable("stun_prober") {
+    testonly = true
+    sources = [ "stunprober/main.cc" ]
+    deps = [
+      "../p2p:libstunprober",
+      "../p2p:rtc_p2p",
+      "../rtc_base",
+      "../rtc_base:checks",
+      "../rtc_base:rtc_base_approved",
+      "../rtc_base:socket_address",
+      "../rtc_base:threading",
+      "//third_party/abseil-cpp/absl/flags:flag",
+      "//third_party/abseil-cpp/absl/flags:parse",
+    ]
+  }
+}

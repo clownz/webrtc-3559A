@@ -1,0 +1,6 @@
+d21be2552252d0343c1ff39215d7e57f  usr/include/GL/glx.h
+0d81baf72fbe2cfeb496667af5fdad39  usr/include/GL/glxext.h
+3c2502187331af423d184c733654a8bb  usr/lib/x86_64-linux-gnu/pkgconfig/glx.pc
+2295a81abfbf493c2fefd51c81b8618e  usr/share/bug/libglx-dev/control
+d114f3807de0e55ff86c3272d3873d88  usr/share/doc/libglx-dev/changelog.Debian.gz
+6f91facaf87458af9488a7576492a515  usr/share/doc/libglx-dev/copyright

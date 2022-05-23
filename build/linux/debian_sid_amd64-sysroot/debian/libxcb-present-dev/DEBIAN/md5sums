@@ -1,0 +1,6 @@
+22c63db45e81ace5bd26af6c03c7ae3e  usr/include/xcb/present.h
+fd4d45aaaede27c3c0c2f33ba03b403f  usr/lib/x86_64-linux-gnu/libxcb-present.a
+ac7ea9e9668df8e905b3a4426aa611c7  usr/lib/x86_64-linux-gnu/pkgconfig/xcb-present.pc
+616ebb50ba1af1f814356eedbb014bf2  usr/share/doc/libxcb-present-dev/changelog.Debian.gz
+ccd3cc60f4b6e39850fa9bc0fe462721  usr/share/doc/libxcb-present-dev/changelog.gz
+618ee90893b45d0d0c19d41a3a3d2e7d  usr/share/doc/libxcb-present-dev/copyright

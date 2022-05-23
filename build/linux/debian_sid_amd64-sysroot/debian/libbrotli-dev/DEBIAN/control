@@ -1,0 +1,20 @@
+Package: libbrotli-dev
+Source: brotli (1.0.9-2)
+Version: 1.0.9-2+b2
+Architecture: amd64
+Maintainer: Tomasz Buchert <tomasz@debian.org>
+Installed-Size: 902
+Depends: libbrotli1 (= 1.0.9-2+b2)
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: https://github.com/google/brotli
+Description: library implementing brotli encoder and decoder (development files)
+ Brotli is a generic-purpose lossless compression algorithm
+ that compresses data using a combination of a modern variant
+ of the LZ77 algorithm, Huffman coding and 2nd order context modeling,
+ with a compression ratio comparable to the best currently available
+ general-purpose compression methods. It is similar in speed with
+ deflate but offers more dense compression.
+ .
+ This package installs development files.

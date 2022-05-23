@@ -1,0 +1,26 @@
+#!/bin/sh
+set -e
+
+# Automatically added by dh_installdeb/13.3
+dpkg-maintscript-helper rm_conffile /etc/speech-dispatcher/clients/gnome-speech.conf 0.8.8-7\~ speech-dispatcher -- "$@"
+dpkg-maintscript-helper rm_conffile /etc/default/speech-dispatcher 0.8.8-4\~ speech-dispatcher -- "$@"
+dpkg-maintscript-helper rm_conffile /etc/speech-dispatcher/modules/mary-generic.conf 0.10.1-2\~ speech-dispatcher -- "$@"
+dpkg-maintscript-helper rm_conffile /etc/speech-dispatcher/modules/espeak-generic.conf 0.10.2-1\~ speech-dispatcher -- "$@"
+dpkg-maintscript-helper rm_conffile /etc/speech-dispatcher/modules/pico-generic.conf 0.10.2-1\~ speech-dispatcher -- "$@"
+# End automatically added section
+
+
+if [ -z "$(dpkg-query -f '${Version}' -W speech-dispatcher-baratinoo 2> /dev/null)" ]
+then
+	dpkg-maintscript-helper rm_conffile /etc/speech-dispatcher/modules/baratinoo.conf 0.10.2-1\~ speech-dispatcher -- "$@"
+fi
+
+if [ -z "$(dpkg-query -f '${Version}' -W speech-dispatcher-ibmtts 2> /dev/null)" ]
+then
+	dpkg-maintscript-helper rm_conffile /etc/speech-dispatcher/modules/ibmtts.conf 0.10.2-1\~ speech-dispatcher -- "$@"
+fi
+
+if [ -z "$(dpkg-query -f '${Version}' -W speech-dispatcher-kali 2> /dev/null)" ]
+then
+	dpkg-maintscript-helper rm_conffile /etc/speech-dispatcher/modules/kali.conf 0.10.2-1\~ speech-dispatcher -- "$@"
+fi

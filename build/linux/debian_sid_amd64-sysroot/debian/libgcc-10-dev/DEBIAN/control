@@ -1,0 +1,17 @@
+Package: libgcc-10-dev
+Source: gcc-10
+Version: 10.2.1-6
+Architecture: amd64
+Maintainer: Debian GCC Maintainers <debian-gcc@lists.debian.org>
+Installed-Size: 13474
+Depends: gcc-10-base (= 10.2.1-6), libgcc-s1 (>= 10.2.1-6), libgomp1 (>= 10.2.1-6), libitm1 (>= 10.2.1-6), libatomic1 (>= 10.2.1-6), libasan6 (>= 10.2.1-6), liblsan0 (>= 10.2.1-6), libtsan0 (>= 10.2.1-6), libubsan1 (>= 10.2.1-6), libquadmath0 (>= 10.2.1-6)
+Recommends: libc6-dev (>= 2.30-1~)
+Breaks: libgccjit-10-dev (<< 10-20200321-1)
+Replaces: libgccjit-10-dev (<< 10-20200321-1)
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Homepage: http://gcc.gnu.org/
+Description: GCC support library (development files)
+ This package contains the headers and static library files necessary for
+ building C programs which use libgcc, libgomp, libquadmath, libssp or libitm.

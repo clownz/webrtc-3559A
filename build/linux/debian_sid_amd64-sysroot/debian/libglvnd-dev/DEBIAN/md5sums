@@ -1,0 +1,7 @@
+3ee14ee1b68137461876826169973189  usr/include/glvnd/GLdispatchABI.h
+5a05028b2b828fee444a58569de4ce18  usr/include/glvnd/libeglabi.h
+f70e204783a9b127b785f7dcb7e72000  usr/include/glvnd/libglxabi.h
+e52bd5dbd8ad246b242d59da5fc50ddc  usr/lib/x86_64-linux-gnu/pkgconfig/libglvnd.pc
+2295a81abfbf493c2fefd51c81b8618e  usr/share/bug/libglvnd-dev/control
+d114f3807de0e55ff86c3272d3873d88  usr/share/doc/libglvnd-dev/changelog.Debian.gz
+6f91facaf87458af9488a7576492a515  usr/share/doc/libglvnd-dev/copyright

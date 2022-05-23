@@ -1,0 +1,16 @@
+Package: libtirpc3
+Source: libtirpc
+Version: 1.3.1-1
+Architecture: amd64
+Maintainer: Josue Ortega <josue@debian.org>
+Installed-Size: 225
+Depends: libc6 (>= 2.16), libgssapi-krb5-2 (>= 1.17), libtirpc-common (>= 1.3.1-1)
+Breaks: nfs-common (<< 1:1.2.8-7), nfs-kernel-server (<< 1:1.2.8-7)
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: http://sourceforge.net/projects/libtirpc
+Description: transport-independent RPC library
+ This package contains a port of Sun's transport-independent RPC library to
+ Linux. The library is intended as a replacement for the RPC code in the GNU C
+ library, providing among others support for RPC (and in turn, NFS) over IPv6.

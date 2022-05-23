@@ -1,0 +1,6 @@
+c1e8115bd4e4f452b31a491102cc910e  usr/include/X11/xshmfence.h
+35215b596b2cdffc960428cbf3d377cb  usr/lib/aarch64-linux-gnu/libxshmfence.a
+824bf58fe4aa5dd5fff54b570a61b7ee  usr/lib/aarch64-linux-gnu/pkgconfig/xshmfence.pc
+9ca6555df39d3aeb3027b05fd0d215fc  usr/share/doc/libxshmfence-dev/changelog.Debian.gz
+e99eb8d1d2a19c2faf4915fd8926f1d5  usr/share/doc/libxshmfence-dev/changelog.gz
+18a9757c949ca195a8eac5f19312d7ce  usr/share/doc/libxshmfence-dev/copyright

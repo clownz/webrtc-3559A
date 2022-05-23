@@ -1,0 +1,6 @@
+8a148da655fbbdf38efaec2408ad0e6a  usr/include/xcb/render.h
+cbbe19bfa5815c78c93bd6237d05d626  usr/lib/arm-linux-gnueabihf/libxcb-render.a
+8e0f5a1ef459b641871bb48a02627200  usr/lib/arm-linux-gnueabihf/pkgconfig/xcb-render.pc
+616ebb50ba1af1f814356eedbb014bf2  usr/share/doc/libxcb-render0-dev/changelog.Debian.gz
+ccd3cc60f4b6e39850fa9bc0fe462721  usr/share/doc/libxcb-render0-dev/changelog.gz
+618ee90893b45d0d0c19d41a3a3d2e7d  usr/share/doc/libxcb-render0-dev/copyright

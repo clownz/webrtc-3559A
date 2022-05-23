@@ -1,0 +1,19 @@
+Package: libglib2.0-0
+Source: glib2.0
+Version: 2.66.7-1
+Architecture: amd64
+Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
+Installed-Size: 3996
+Depends: libc6 (>= 2.28), libffi7 (>= 3.3~20180313), libmount1 (>= 2.35.2-7~), libpcre3, libselinux1 (>= 3.1~), zlib1g (>= 1:1.2.2)
+Recommends: libglib2.0-data, shared-mime-info, xdg-user-dirs
+Breaks: gimp (<< 2.10.14-3~), glib-networking-tests (<< 2.63.2), libgirepository-1.0-1 (<< 1.62.0-4~), libgladeui-2-6 (<< 3.22.2)
+Section: libs
+Priority: optional
+Multi-Arch: same
+Homepage: https://wiki.gnome.org/Projects/GLib
+Description: GLib library of C routines
+ GLib is a library containing many useful C routines for things such
+ as trees, hashes, lists, and strings.  It is a useful general-purpose
+ C library used by projects such as GTK+, GIMP, and GNOME.
+ .
+ This package contains the shared libraries.

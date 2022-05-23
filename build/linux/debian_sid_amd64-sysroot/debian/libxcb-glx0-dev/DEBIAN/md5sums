@@ -1,0 +1,6 @@
+fbf16e89d9910b1be0d8bc1d66f26cc7  usr/include/xcb/glx.h
+04f96dd81515ab9064905443f202176d  usr/lib/x86_64-linux-gnu/libxcb-glx.a
+7e47001e88c90dd84b9ad8bfefb21330  usr/lib/x86_64-linux-gnu/pkgconfig/xcb-glx.pc
+616ebb50ba1af1f814356eedbb014bf2  usr/share/doc/libxcb-glx0-dev/changelog.Debian.gz
+ccd3cc60f4b6e39850fa9bc0fe462721  usr/share/doc/libxcb-glx0-dev/changelog.gz
+618ee90893b45d0d0c19d41a3a3d2e7d  usr/share/doc/libxcb-glx0-dev/copyright

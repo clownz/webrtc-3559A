@@ -1,0 +1,25 @@
+Package: libx11-dev
+Source: libx11
+Version: 2:1.7.0-2
+Architecture: amd64
+Maintainer: Debian X Strike Force <debian-x@lists.debian.org>
+Installed-Size: 2650
+Depends: libx11-6 (= 2:1.7.0-2), libxau-dev (>= 1:1.0.0-1), libxdmcp-dev (>= 1:1.0.0-1), x11proto-dev (>= 2019.2-1), xtrans-dev, libxcb1-dev
+Suggests: libx11-doc
+Replaces: x11proto-dev (<< 2019.2)
+Section: libdevel
+Priority: optional
+Multi-Arch: same
+Description: X11 client-side library (development headers)
+ This package provides a client interface to the X Window System, otherwise
+ known as 'Xlib'.  It provides a complete API for the basic functions of the
+ window system.
+ .
+ This package contains the development headers for the library found in
+ libx11-6. Non-developers likely have little use for this package.
+ .
+ More information about X.Org can be found at:
+ <URL:https://www.X.org>
+ .
+ This module can be found at
+ https://gitlab.freedesktop.org/xorg/lib/libX11

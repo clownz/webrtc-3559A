@@ -1,0 +1,7 @@
+13c104ff06dce331bc61c8ccc587b5b1  usr/include/X11/extensions/Xcomposite.h
+ed3f862bf412856efa2fb943e94f2d75  usr/lib/x86_64-linux-gnu/libXcomposite.a
+ecc79809ec8fc0bd1530572989703c13  usr/lib/x86_64-linux-gnu/pkgconfig/xcomposite.pc
+bf7753591e2491d7367be52a15ac16b0  usr/share/doc/libxcomposite-dev/changelog.Debian.gz
+a07ea26adc70e23853d29e7549c62354  usr/share/doc/libxcomposite-dev/changelog.gz
+934270fefc55126600167967b40c7118  usr/share/doc/libxcomposite-dev/copyright
+f30461f29a7711afb4ccaa742bc7414e  usr/share/man/man3/Xcomposite.3.gz
