@@ -1,0 +1,2 @@
+ninja: Entering directory `out/Default'
+ninja: error: loading 'build.ninja': No such file or directory

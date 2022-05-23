@@ -1,0 +1,11 @@
+ninja_required_version = 1.7.2
+
+rule gn
+  command = ../../buildtools/linux64/gn --root=../.. -q --regeneration gen .
+  pool = console
+  description = Regenerating ninja files
+
+build build.ninja: gn
+  generator = 1
+  depfile = build.ninja.d
+

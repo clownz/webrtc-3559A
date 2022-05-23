@@ -1,0 +1,13 @@
+target_os = "linux"
+target_cpu = "arm"
+is_debug = true
+rtc_include_tests = true
+rtc_build_examples = true
+use_glib = false
+rtc_use_pipewire = false
+treat_warnings_as_errors = false
+rtc_use_x11 = false
+rtc_use_gtk = false
+use_dbus = false
+rtc_use_h264 = true
+rtc_initialize_ffmpeg = true
