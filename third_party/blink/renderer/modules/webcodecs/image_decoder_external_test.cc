@@ -1,0 +1,341 @@
+// Copyright 2020 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
+#include "third_party/blink/renderer/modules/webcodecs/image_decoder_external.h"
+
+#include "media/media_buildflags.h"
+#include "testing/gtest/include/gtest/gtest.h"
+#include "third_party/blink/renderer/bindings/core/v8/native_value_traits_impl.h"
+#include "third_party/blink/renderer/bindings/core/v8/script_promise_tester.h"
+#include "third_party/blink/renderer/bindings/core/v8/v8_binding_for_testing.h"
+#include "third_party/blink/renderer/bindings/modules/v8/v8_image_decode_options.h"
+#include "third_party/blink/renderer/bindings/modules/v8/v8_image_decode_result.h"
+#include "third_party/blink/renderer/bindings/modules/v8/v8_image_decoder_init.h"
+#include "third_party/blink/renderer/bindings/modules/v8/v8_image_track.h"
+#include "third_party/blink/renderer/core/imagebitmap/image_bitmap.h"
+#include "third_party/blink/renderer/core/typed_arrays/dom_array_buffer.h"
+#include "third_party/blink/renderer/modules/webcodecs/video_frame.h"
+#include "third_party/blink/renderer/platform/testing/unit_test_helpers.h"
+#include "third_party/blink/renderer/platform/wtf/text/string_builder.h"
+
+namespace blink {
+
+namespace {
+
+class ImageDecoderTest : public testing::Test {
+ protected:
+  ImageDecoderExternal* CreateDecoder(V8TestingScope* v8_scope,
+                                      const char* file_name,
+                                      const char* mime_type) {
+    auto* init = MakeGarbageCollected<ImageDecoderInit>();
+    init->setType(mime_type);
+
+    auto data = ReadFile(file_name);
+    DCHECK(!data->IsEmpty()) << "Missing file: " << file_name;
+    init->setData(ArrayBufferOrArrayBufferViewOrReadableStream::FromArrayBuffer(
+        DOMArrayBuffer::Create(std::move(data))));
+    return ImageDecoderExternal::Create(v8_scope->GetScriptState(), init,
+                                        v8_scope->GetExceptionState());
+  }
+
+  ImageDecodeResult* ToImageDecodeResult(V8TestingScope* v8_scope,
+                                         ScriptValue value) {
+    return NativeValueTraits<ImageDecodeResult>::NativeValue(
+        v8_scope->GetIsolate(), value.V8Value(), v8_scope->GetExceptionState());
+  }
+
+  ImageDecodeOptions* MakeOptions(uint32_t frame_index = 0,
+                                  bool complete_frames_only = true) {
+    auto* options = MakeGarbageCollected<ImageDecodeOptions>();
+    options->setFrameIndex(frame_index);
+    options->setCompleteFramesOnly(complete_frames_only);
+    return options;
+  }
+
+  scoped_refptr<SharedBuffer> ReadFile(StringView file_name) {
+    StringBuilder file_path;
+    file_path.Append(test::BlinkWebTestsDir());
+    file_path.Append('/');
+    file_path.Append(file_name);
+    return test::ReadFromFile(file_path.ToString());
+  }
+
+  bool IsTypeSupported(V8TestingScope* v8_scope, String type) {
+    auto promise =
+        ImageDecoderExternal::isTypeSupported(v8_scope->GetScriptState(), type);
+    ScriptPromiseTester tester(v8_scope->GetScriptState(), promise);
+    tester.WaitUntilSettled();
+    EXPECT_FALSE(tester.IsRejected());
+
+    auto v8_value = tester.Value().V8Value();
+    EXPECT_TRUE(v8_value->IsBoolean());
+    return v8_value.As<v8::Boolean>()->Value();
+  }
+};
+
+TEST_F(ImageDecoderTest, IsTypeSupported) {
+  V8TestingScope v8_scope;
+  EXPECT_TRUE(IsTypeSupported(&v8_scope, "image/jpeg"));
+  EXPECT_TRUE(IsTypeSupported(&v8_scope, "image/pjpeg"));
+  EXPECT_TRUE(IsTypeSupported(&v8_scope, "image/jpg"));
+
+  EXPECT_TRUE(IsTypeSupported(&v8_scope, "image/png"));
+  EXPECT_TRUE(IsTypeSupported(&v8_scope, "image/x-png"));
+  EXPECT_TRUE(IsTypeSupported(&v8_scope, "image/apng"));
+
+  EXPECT_TRUE(IsTypeSupported(&v8_scope, "image/gif"));
+
+  EXPECT_TRUE(IsTypeSupported(&v8_scope, "image/webp"));
+
+  EXPECT_TRUE(IsTypeSupported(&v8_scope, "image/x-icon"));
+  EXPECT_TRUE(IsTypeSupported(&v8_scope, "image/vnd.microsoft.icon"));
+
+  EXPECT_TRUE(IsTypeSupported(&v8_scope, "image/bmp"));
+  EXPECT_TRUE(IsTypeSupported(&v8_scope, "image/x-xbitmap"));
+
+  EXPECT_EQ(IsTypeSupported(&v8_scope, "image/avif"),
+            BUILDFLAG(ENABLE_AV1_DECODER));
+
+  EXPECT_FALSE(IsTypeSupported(&v8_scope, "image/svg+xml"));
+  EXPECT_FALSE(IsTypeSupported(&v8_scope, "image/heif"));
+  EXPECT_FALSE(IsTypeSupported(&v8_scope, "image/pcx"));
+  EXPECT_FALSE(IsTypeSupported(&v8_scope, "image/bpg"));
+}
+
+TEST_F(ImageDecoderTest, DecodeEmpty) {
+  V8TestingScope v8_scope;
+
+  auto* init = MakeGarbageCollected<ImageDecoderInit>();
+  init->setType("image/png");
+  init->setData(ArrayBufferOrArrayBufferViewOrReadableStream::FromArrayBuffer(
+      DOMArrayBuffer::Create(SharedBuffer::Create())));
+  auto* decoder = ImageDecoderExternal::Create(v8_scope.GetScriptState(), init,
+                                               v8_scope.GetExceptionState());
+  EXPECT_FALSE(decoder);
+  EXPECT_TRUE(v8_scope.GetExceptionState().HadException());
+}
+
+TEST_F(ImageDecoderTest, DecodeNeuteredAtConstruction) {
+  V8TestingScope v8_scope;
+
+  auto* init = MakeGarbageCollected<ImageDecoderInit>();
+  auto* buffer = DOMArrayBuffer::Create(SharedBuffer::Create());
+
+  init->setType("image/png");
+  init->setData(
+      ArrayBufferOrArrayBufferViewOrReadableStream::FromArrayBuffer(buffer));
+
+  ArrayBufferContents contents;
+  ASSERT_TRUE(buffer->Transfer(v8_scope.GetIsolate(), contents));
+
+  auto* decoder = ImageDecoderExternal::Create(v8_scope.GetScriptState(), init,
+                                               v8_scope.GetExceptionState());
+  EXPECT_FALSE(decoder);
+  EXPECT_TRUE(v8_scope.GetExceptionState().HadException());
+}
+
+TEST_F(ImageDecoderTest, DecodeNeuteredAtDecodeTime) {
+  V8TestingScope v8_scope;
+
+  constexpr char kImageType[] = "image/gif";
+  EXPECT_TRUE(IsTypeSupported(&v8_scope, kImageType));
+
+  auto* init = MakeGarbageCollected<ImageDecoderInit>();
+  init->setType(kImageType);
+
+  constexpr char kTestFile[] = "images/resources/animated.gif";
+  auto data = ReadFile(kTestFile);
+  DCHECK(!data->IsEmpty()) << "Missing file: " << kTestFile;
+
+  auto* buffer = DOMArrayBuffer::Create(std::move(data));
+
+  init->setData(
+      ArrayBufferOrArrayBufferViewOrReadableStream::FromArrayBuffer(buffer));
+
+  auto* decoder = ImageDecoderExternal::Create(v8_scope.GetScriptState(), init,
+                                               v8_scope.GetExceptionState());
+  ASSERT_TRUE(decoder);
+  ASSERT_FALSE(v8_scope.GetExceptionState().HadException());
+
+  ArrayBufferContents contents;
+  ASSERT_TRUE(buffer->Transfer(v8_scope.GetIsolate(), contents));
+
+  auto promise = decoder->decode(MakeOptions(0, true));
+  ScriptPromiseTester tester(v8_scope.GetScriptState(), promise);
+  tester.WaitUntilSettled();
+  ASSERT_TRUE(tester.IsRejected());
+}
+
+TEST_F(ImageDecoderTest, DecodeUnsupported) {
+  V8TestingScope v8_scope;
+  constexpr char kImageType[] = "image/svg+xml";
+  EXPECT_FALSE(IsTypeSupported(&v8_scope, kImageType));
+  auto* decoder =
+      CreateDecoder(&v8_scope, "images/resources/test.svg", kImageType);
+  EXPECT_TRUE(decoder);
+  EXPECT_FALSE(v8_scope.GetExceptionState().HadException());
+
+  {
+    auto promise = decoder->decodeMetadata();
+    ScriptPromiseTester tester(v8_scope.GetScriptState(), promise);
+    tester.WaitUntilSettled();
+    EXPECT_TRUE(tester.IsRejected());
+  }
+
+  {
+    auto promise = decoder->decode(MakeOptions(0, true));
+    ScriptPromiseTester tester(v8_scope.GetScriptState(), promise);
+    tester.WaitUntilSettled();
+    EXPECT_TRUE(tester.IsRejected());
+  }
+}
+
+TEST_F(ImageDecoderTest, DecoderCreationMixedCaseMimeType) {
+  V8TestingScope v8_scope;
+  constexpr char kImageType[] = "image/GiF";
+  EXPECT_TRUE(IsTypeSupported(&v8_scope, kImageType));
+  auto* decoder =
+      CreateDecoder(&v8_scope, "images/resources/animated.gif", kImageType);
+  ASSERT_TRUE(decoder);
+  ASSERT_FALSE(v8_scope.GetExceptionState().HadException());
+  EXPECT_EQ(decoder->type(), "image/gif");
+}
+
+TEST_F(ImageDecoderTest, DecodeGif) {
+  V8TestingScope v8_scope;
+  constexpr char kImageType[] = "image/gif";
+  EXPECT_TRUE(IsTypeSupported(&v8_scope, kImageType));
+  auto* decoder =
+      CreateDecoder(&v8_scope, "images/resources/animated.gif", kImageType);
+  ASSERT_TRUE(decoder);
+  ASSERT_FALSE(v8_scope.GetExceptionState().HadException());
+
+  {
+    auto promise = decoder->decodeMetadata();
+    ScriptPromiseTester tester(v8_scope.GetScriptState(), promise);
+    tester.WaitUntilSettled();
+    ASSERT_TRUE(tester.IsFulfilled());
+  }
+
+  const auto& tracks = decoder->tracks();
+  ASSERT_EQ(tracks.length(), 1u);
+  EXPECT_EQ(tracks.AnonymousIndexedGetter(0)->animated(), true);
+  EXPECT_EQ(tracks.selectedTrack().value()->animated(), true);
+
+  EXPECT_EQ(decoder->type(), kImageType);
+  EXPECT_EQ(tracks.selectedTrack().value()->frameCount(), 2u);
+  EXPECT_EQ(tracks.selectedTrack().value()->repetitionCount(), INFINITY);
+  EXPECT_EQ(decoder->complete(), true);
+
+  {
+    auto promise = decoder->decode(MakeOptions(0, true));
+    ScriptPromiseTester tester(v8_scope.GetScriptState(), promise);
+    tester.WaitUntilSettled();
+    ASSERT_TRUE(tester.IsFulfilled());
+    auto* result = ToImageDecodeResult(&v8_scope, tester.Value());
+    EXPECT_TRUE(result->complete());
+
+    auto* frame = result->image();
+    EXPECT_EQ(frame->duration(), 0u);
+    EXPECT_EQ(frame->displayWidth(), 16u);
+    EXPECT_EQ(frame->displayHeight(), 16u);
+  }
+
+  {
+    auto promise = decoder->decode(MakeOptions(1, true));
+    ScriptPromiseTester tester(v8_scope.GetScriptState(), promise);
+    tester.WaitUntilSettled();
+    ASSERT_TRUE(tester.IsFulfilled());
+    auto* result = ToImageDecodeResult(&v8_scope, tester.Value());
+    EXPECT_TRUE(result->complete());
+
+    auto* frame = result->image();
+    EXPECT_EQ(frame->duration(), 0u);
+    EXPECT_EQ(frame->displayWidth(), 16u);
+    EXPECT_EQ(frame->displayHeight(), 16u);
+  }
+
+  // Decoding past the end should result in a rejected promise.
+  auto promise = decoder->decode(MakeOptions(3, true));
+  ScriptPromiseTester tester(v8_scope.GetScriptState(), promise);
+  tester.WaitUntilSettled();
+  ASSERT_TRUE(tester.IsRejected());
+}
+
+TEST_F(ImageDecoderTest, DecoderReset) {
+  V8TestingScope v8_scope;
+  constexpr char kImageType[] = "image/gif";
+  EXPECT_TRUE(IsTypeSupported(&v8_scope, kImageType));
+  auto* decoder =
+      CreateDecoder(&v8_scope, "images/resources/animated.gif", kImageType);
+  ASSERT_TRUE(decoder);
+  ASSERT_FALSE(v8_scope.GetExceptionState().HadException());
+  EXPECT_EQ(decoder->type(), "image/gif");
+  decoder->reset();
+
+  // Ensure decoding works properly after reset.
+  {
+    auto promise = decoder->decodeMetadata();
+    ScriptPromiseTester tester(v8_scope.GetScriptState(), promise);
+    tester.WaitUntilSettled();
+    ASSERT_TRUE(tester.IsFulfilled());
+  }
+
+  const auto& tracks = decoder->tracks();
+  ASSERT_EQ(tracks.length(), 1u);
+  EXPECT_EQ(tracks.AnonymousIndexedGetter(0)->animated(), true);
+  EXPECT_EQ(tracks.selectedTrack().value()->animated(), true);
+
+  EXPECT_EQ(decoder->type(), kImageType);
+  EXPECT_EQ(tracks.selectedTrack().value()->frameCount(), 2u);
+  EXPECT_EQ(tracks.selectedTrack().value()->repetitionCount(), INFINITY);
+  EXPECT_EQ(decoder->complete(), true);
+
+  {
+    auto promise = decoder->decode(MakeOptions(0, true));
+    ScriptPromiseTester tester(v8_scope.GetScriptState(), promise);
+    tester.WaitUntilSettled();
+    ASSERT_TRUE(tester.IsFulfilled());
+    auto* result = ToImageDecodeResult(&v8_scope, tester.Value());
+    EXPECT_TRUE(result->complete());
+
+    auto* frame = result->image();
+    EXPECT_EQ(frame->duration(), 0u);
+    EXPECT_EQ(frame->displayWidth(), 16u);
+    EXPECT_EQ(frame->displayHeight(), 16u);
+  }
+}
+
+TEST_F(ImageDecoderTest, DecoderClose) {
+  V8TestingScope v8_scope;
+  constexpr char kImageType[] = "image/gif";
+  EXPECT_TRUE(IsTypeSupported(&v8_scope, kImageType));
+  auto* decoder =
+      CreateDecoder(&v8_scope, "images/resources/animated.gif", kImageType);
+  ASSERT_TRUE(decoder);
+  ASSERT_FALSE(v8_scope.GetExceptionState().HadException());
+  EXPECT_EQ(decoder->type(), "image/gif");
+  decoder->close();
+
+  {
+    auto promise = decoder->decodeMetadata();
+    ScriptPromiseTester tester(v8_scope.GetScriptState(), promise);
+    tester.WaitUntilSettled();
+    EXPECT_TRUE(tester.IsRejected());
+  }
+
+  {
+    auto promise = decoder->decode(MakeOptions(0, true));
+    ScriptPromiseTester tester(v8_scope.GetScriptState(), promise);
+    tester.WaitUntilSettled();
+    EXPECT_TRUE(tester.IsRejected());
+  }
+}
+
+// TODO(crbug.com/1073995): Add tests for each format, selectTrack(), partial
+// decoding, and ImageBitmapOptions.
+
+}  // namespace
+
+}  // namespace blink

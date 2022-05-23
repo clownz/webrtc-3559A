@@ -1,0 +1,25 @@
+apply plugin: "java"
+
+group = 'org.mockito'
+archivesBaseName = "mockito-" + project.name
+bintrayUpload.enabled = true
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+test {
+    include "**/*Test.class"
+
+    testLogging {
+        exceptionFormat 'full'
+        showCauses true
+    }
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled false
+        html.enabled true
+        html.stylesheet resources.text.fromFile("$rootDir/config/checkstyle/checkstyle.xsl")
+    }
+}

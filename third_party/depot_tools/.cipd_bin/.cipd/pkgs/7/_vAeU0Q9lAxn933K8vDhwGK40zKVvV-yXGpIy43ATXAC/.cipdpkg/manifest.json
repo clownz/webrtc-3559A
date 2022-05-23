@@ -1,0 +1,13 @@
+{
+  "format_version": "1.1",
+  "package_name": "chromiumos/infra/crosjobs/linux-amd64",
+  "install_mode": "copy",
+  "files": [
+    {
+      "name": "buildjobs",
+      "size": 21377900,
+      "executable": true,
+      "hash": "TzMT1959TwVBRP_VcbWI5UddHR11LRRqV15FinKCH4kC"
+    }
+  ]
+}

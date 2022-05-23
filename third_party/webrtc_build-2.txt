@@ -1,0 +1,2 @@
+ninja: Entering directory `out/Default'
+ninja: fatal: chdir to 'out/Default' - No such file or directory

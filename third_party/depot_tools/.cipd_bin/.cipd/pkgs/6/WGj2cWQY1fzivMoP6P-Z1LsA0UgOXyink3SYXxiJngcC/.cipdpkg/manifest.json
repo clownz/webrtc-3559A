@@ -1,0 +1,19 @@
+{
+  "format_version": "1.1",
+  "package_name": "infra/tools/rdb/linux-amd64",
+  "version_file": ".versions/rdb.cipd_version",
+  "install_mode": "copy",
+  "files": [
+    {
+      "name": "rdb",
+      "size": 28636046,
+      "executable": true,
+      "hash": "Ex6r95OCBaLP3Gev370nC-R3bJoSs0BKR5_fFpEH3PYC"
+    },
+    {
+      "name": ".versions/rdb.cipd_version",
+      "size": 116,
+      "hash": "E8zOSIdB3iPh6i29oKXFmHR2cUe-9ja3eT_jgW8G5WQC"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "format_version": "1.1",
+  "package_name": "infra/chromeperf/pinpoint/linux-amd64",
+  "version_file": ".versions/pinpoint.cipd_version",
+  "install_mode": "copy",
+  "files": [
+    {
+      "name": "pinpoint",
+      "size": 15891554,
+      "executable": true,
+      "hash": "Th4PbCPj9Oi7UlI6YmqwY5YhXLNgVy5JY-NW7OmO1K8C"
+    },
+    {
+      "name": ".versions/pinpoint.cipd_version",
+      "size": 126,
+      "hash": "R5kEnt6AhDvElTn10EqjyYbTp7N3jPg_bYJGfrv9X4MC"
+    }
+  ]
+}

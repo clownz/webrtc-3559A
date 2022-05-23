@@ -1,0 +1,6 @@
+This is a testharness.js-based test.
+FAIL imported-module-script.js works when used as top-level promise_test: Unhandled rejection with value: object "NotSupportedError: type 'module' in RegistrationOptions is not implemented yet.See https://crbug.com/824647 for details."
+FAIL static imports to outside path restriction should be allowed promise_test: Unhandled rejection with value: object "NotSupportedError: type 'module' in RegistrationOptions is not implemented yet.See https://crbug.com/824647 for details."
+FAIL static imports redirecting to outside path restriction should be allowed promise_test: Unhandled rejection with value: object "NotSupportedError: type 'module' in RegistrationOptions is not implemented yet.See https://crbug.com/824647 for details."
+Harness: the test ran to completion.
+

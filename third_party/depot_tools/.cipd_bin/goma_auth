@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# Copyright 2020 Google LLC.
+
+MYPATH=$(dirname "${BASH_SOURCE[0]}")
+
+PYTHONDONTWRITEBYTECODE=1 exec python "$MYPATH/goma_auth.py" "$@"

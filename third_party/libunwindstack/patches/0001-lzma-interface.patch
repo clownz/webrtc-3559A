@@ -1,0 +1,24 @@
+diff --git a/src/libunwindstack/ElfInterface.cpp b/src/libunwindstack/ElfInterface.cpp
+index 341275dbb..8725ad375 100644
+--- a/src/libunwindstack/ElfInterface.cpp
++++ b/src/libunwindstack/ElfInterface.cpp
+@@ -39,6 +39,10 @@
+ 
+ namespace unwindstack {
+ 
++namespace {
++typedef void* ISzAllocPtr;
++}  // namespace
++
+ ElfInterface::~ElfInterface() {
+   for (auto symbol : symbols_) {
+     delete symbol;
+@@ -129,7 +133,7 @@ Memory* ElfInterface::CreateGnuDebugdataMemory() {
+       dst_remaining += buffer_increment;
+     }
+     return_val = XzUnpacker_Code(&state, dst->GetPtr(dst_offset), &dst_remaining, &src[src_offset],
+-                                 &src_remaining, true, CODER_FINISH_ANY, &status);
++                                 &src_remaining, CODER_FINISH_ANY, &status);
+     src_offset += src_remaining;
+     dst_offset += dst_remaining;
+   } while (return_val == SZ_OK && status == CODER_STATUS_NOT_FINISHED);
